@@ -1,0 +1,20 @@
+<h1>Flights</h1>
+
+<table>
+  <tr>
+    <th>Depature Airport</th>
+    <th>Arrival Airport</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Duration (Hours)</th>
+  </tr>
+  <% @flights.each do |f| %>
+    <tr>
+      <td><%= f.departure_airport.code %></td>
+      <td><%= f.arrival_airport.code %></td>
+      <td><%= f.date.strftime("%B %-d, %Y") %></td> <%# Verbose Month, Day %>
+      <td><%= f.date.strftime("%H:%M %P") %></td> <%# Hour:Minute AM/PM %>
+      <td><%= f.duration %></td>
+    </tr>
+  <% end %>
+</table>
