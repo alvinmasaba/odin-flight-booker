@@ -1,5 +1,5 @@
 class FlightsController < ActionController::Base
   def index
-    @flights = Flight.all
+    @flights = Flight.search(params)
   end
 end

@@ -1,9 +1,13 @@
 <h1>Flights</h1>
 
 <%= form_with url: "/flights", method: :get do |form| %>
+  <%= form.label :departure_airport_id, "Departure Airport" %>
   <%= form.collection_select :departure_airport_id, Airport.order(:code), :id, :code %>
+  <%= form.label :arrival_airport_id, "Arrival Airport" %>
   <%= form.collection_select :arrival_airport_id, Airport.order(:code), :id, :code %>
+  <%= form.label :num_passengers, "Number of Passengers" %>
   <%= form.select :num_passengers, [1,2,3,4] %>
+  <%= form.label :date, "Departure Date" %>
   <%= form.collection_select :date, Flight.order(:date), :date, :flight_date %>
   <%= form.submit "Search Flights" %>
 <% end %>
@@ -20,7 +24,7 @@
     <tr>
       <td><%= f.departure_airport.code %></td>
       <td><%= f.arrival_airport.code %></td>
-      <td><%= f.date.strftime("%B %-d, %Y") %></td> <%# Verbose Month, Day %>
+      <td><%= f.flight_date %></td>
       <td><%= f.date.strftime("%H:%M %P") %></td> <%# Hour:Minute AM/PM %>
       <td><%= f.duration %></td>
     </tr>
