@@ -5,16 +5,9 @@ class Flight < ApplicationRecord
   belongs_to :arrival_airport, class_name: "Airport"
 
   def self.search(search)
-    if search
-      flight = Flight.find_by("departure_airport_id = ? AND arrival_airport_id = ? AND date = ?", search[:departure_airport_id], search[:arrival_airport_id], search[:date].to_datetime)
-        if flight
-          [flight]
-        else
-          Flight.all
-        end
-    else
-      Flight.all
-    end
+    Flight.where("departure_airport_id = ? OR arrival_airport_id = ? OR date = ?", search[:departure_airport_id], 
+                                                                                   search[:arrival_airport_id], 
+                                                                                   (search[:date].to_datetime if search[:date]))
   end
 
   def flight_date
