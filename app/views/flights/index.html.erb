@@ -1,5 +1,13 @@
 <h1>Flights</h1>
 
+<%= form_with url: "/flights", method: :get do |form| %>
+  <%= form.collection_select :departure_airport_id, Airport.order(:code), :id, :code %>
+  <%= form.collection_select :arrival_airport_id, Airport.order(:code), :id, :code %>
+  <%= form.select :num_passengers, [1,2,3,4] %>
+  <%= form.collection_select :date, Flight.order(:date), :date, :flight_date %>
+  <%= form.submit "Search Flights" %>
+<% end %>
+
 <table>
   <tr>
     <th>Depature Airport</th>
