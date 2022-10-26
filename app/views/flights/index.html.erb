@@ -3,7 +3,7 @@
 <%= form_with url: "/flights", method: :get do |form| %>
   <%= form.collection_select :departure_airport_id, Airport.order(:code), :id, :code, {:prompt => "Depart From"} %>
   <%= form.collection_select :arrival_airport_id, Airport.order(:code), :id, :code, {:prompt => "Destination"} %>
-  <%= form.select :num_passengers, [1,2,3,4], {:prompt => "Number of Passengers"} %>
+  <%= form.select :num_passengers, [1,2,3,4], {:prompt => "Number of Passengers"}, :required => true %>
   <%= form.collection_select :date, Flight.order(:date), :date, :flight_date, {:prompt => "Departure Date"} %>
   <%= form.submit "Search Flights" %>
 <% end %>
@@ -18,27 +18,4 @@
   <%= "On: #{@date}"%>
 <% end %>
 
-<%= form_with url: "/", method: :get do |form| %>
-  <table>
-    <tr>
-      <th>Depature Airport</th>
-      <th>Arrival Airport</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Duration (Hours)</th>
-      <th>Select</th>
-    </tr>
-    <% @flights.each do |f| %>
-      <tr>
-        <td><%= f.departure_airport.code %></td>
-        <td><%= f.arrival_airport.code %></td>
-        <td><%= f.flight_date %></td>
-        <td><%= f.date.strftime("%H:%M %P") %></td> <%# Hour:Minute AM/PM %>
-        <td><%= f.duration %></td>
-        <td><%= form.radio_button :id, "" %>
-      </tr>
-    <% end %>    
-  </table>
-
-  <%= form.submit "Book Flight" %>
-<% end %>
+<%= render "flights_table", flights: @flights %>

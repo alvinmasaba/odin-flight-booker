@@ -1,0 +1,10 @@
+<h1>Booking For Flight <%= @flight.id %></h1>
+
+<div>
+  <p>Date: <%= @flight.flight_date %></p>
+  <p>Departure: <%= @flight.departure_airport.code %></p>
+  <p>Destination: <%= @flight.arrival_airport.code %></p>
+  <p>Number of Passengers: <%= params[:num_passengers] %></p>
+</div>
+
+<%= render "form", booking: @booking %>

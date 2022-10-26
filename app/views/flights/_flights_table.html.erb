@@ -1,0 +1,30 @@
+<%# If Flights.search yields any results from the given search params, each flight will be displayed as a table row. %>
+<%# On the first visit to index, flights will be empty so no table will be displayed. %>
+<% unless flights.empty? %>
+  <%= form_with url: "/bookings/new", method: :get do |form| %>
+    <table>
+      <tr>
+        <th>Depature Airport</th>
+        <th>Arrival Airport</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Duration (Hours)</th>
+        <th>Select Flight</th>
+      </tr>
+      <% flights.each do |f| %> <%# Iterates through collection of returned flights, populating table cells with flight data. %>
+        <tr>
+          <td><%= f.departure_airport.code %></td>
+          <td><%= f.arrival_airport.code %></td>
+          <td><%= f.flight_date %></td>
+          <td><%= f.date.strftime("%H:%M %P") %></td> <%# Hour:Minute AM/PM %>
+          <td><%= f.duration %></td>
+          <td><%= form.radio_button :flight_id, f.id %> <%# Radio button will submit the selected flight's ID along to the booking page. %>
+        </tr>
+      <% end %>    
+    </table>
+
+    <%# Number of passengers included as hidden field to tell bookings controller how many bookings to create. %>
+    <%= form.hidden_field :num_passengers, value: params[:num_passengers] %>
+    <%= form.submit "Book Flight" %>
+  <% end %>
+<% end %>

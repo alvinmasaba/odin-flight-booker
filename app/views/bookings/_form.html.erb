@@ -1,0 +1,26 @@
+<%= form_with model: booking do |form| %>
+  
+  <h2>Passengers</h1>
+  <ol>
+
+    <%= form.fields_for :passengers do |passengers_form|%>
+      <li>
+        <div>
+          <%= passengers_form.label :name %><br>
+          <%= passengers_form.text_field :name %>
+        </div>
+
+        <div>
+          <%= passengers_form.label :email %><br>
+          <%= passengers_form.email_field :email %>
+        <div>
+
+        <br>
+      </li>
+    <% end %>
+
+  </ol>
+
+  <%= form.hidden_field :flight_id, value: params[:flight_id].to_i %>
+  <%= form.submit %>
+<% end %>

@@ -3,6 +3,6 @@ class FlightsController < ActionController::Base
     @flights = Flight.search(params)
     @departure_airport_code = Airport.display_airport_code(params[:departure_airport_id])
     @arrival_airport_code = Airport.display_airport_code(params[:arrival_airport_id])
-    @date = params[:date].to_datetime.strftime("%B %-d, %Y") unless params[:date] == ""
+    @date = params[:date].to_datetime.strftime("%B %-d, %Y") unless params[:date] == "" || params[:date].nil?
   end
 end
