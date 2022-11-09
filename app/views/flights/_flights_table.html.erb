@@ -16,7 +16,7 @@
           <td><%= f.departure_airport.code %></td>
           <td><%= f.arrival_airport.code %></td>
           <td><%= f.flight_date %></td>
-          <td><%= f.date.strftime("%H:%M %P") %></td> <%# Hour:Minute AM/PM %>
+          <td><%= f.flight_time %></td> <%# Hour:Minute AM/PM %>
           <td><%= f.duration %></td>
           <td><%= form.radio_button :flight_id, f.id %> <%# Radio button will submit the selected flight's ID along to the booking page. %>
         </tr>

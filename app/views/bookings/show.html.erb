@@ -1,0 +1,23 @@
+<%= flash[:notice] %>
+
+<h1>Your Booking Information:</h1>
+
+<div>
+  <p>Date: <%= @booking.flight.flight_date%></p>
+  <p>Departure Airport: <%= @booking.flight.departure_airport.code%></p>
+  <p>Destination Airport: <%= @booking.flight.arrival_airport.code%></p>
+</div>
+
+<ol>
+
+  <h2>Passenger Information:</h2>
+
+  <% @booking.passengers.each do |passenger| %>
+    <li>
+      <div>Name: <%= passenger.name %></div>
+      <div>Email: <%= passenger.email %></div>
+      <br>
+    </li>
+  <% end %>
+
+</ol>
