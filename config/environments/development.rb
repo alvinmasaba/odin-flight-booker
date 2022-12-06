@@ -67,4 +67,11 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Set action_mailer to use letter_opener gem
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+  # Fetch assets from local server
+  config.action_mailer.asset_host = 'http://localhost:3000'
 end
