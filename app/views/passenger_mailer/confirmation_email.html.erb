@@ -4,6 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <div>
+      <%= image_tag attachments['plane.jpeg'].url %>
+    </div>
+
     <h1>Your booking has been confirmed, <%= @passenger.name %>.</h1>
     <p>
       You have successfully booked a seat on flight <%= @flight.id %>,

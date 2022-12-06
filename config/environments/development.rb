@@ -74,4 +74,16 @@ Rails.application.configure do
 
   # Fetch assets from local server
   config.action_mailer.asset_host = 'http://localhost:3000'
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #  address:              'smtp.gmail.com',
+  #  port:                 587,
+  #  domain:               'example.com',
+  #  user_name:            Rails.application.credentials.gmail.email,
+  #  password:             Rails.application.credentials.gmail.app_password,
+  #  authentication:       'plain',
+  #  enable_starttls_auto: true,
+  #  open_timeout:         5,
+  #  read_timeout:         5 }
 end
