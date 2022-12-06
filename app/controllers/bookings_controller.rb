@@ -8,12 +8,18 @@ class BookingsController < ActionController::Base
   def create
     @booking = Booking.new(booking_params)
 
-    if @booking.save
-      flash[:notice] = "Your Flight Has Been Successfully Booked!"
-      redirect_to @booking
-    else
-      flash.now[:notice] = "Booking Unsuccessful"
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @booking.save
+        @booking.passengers.each do |passenger|
+          PassengerMailer.confirmation_email(passenger).deliver_later
+        end
+
+        format.html { redirect_to(@booking, notice: 'Your Flight Has Been Booked Successfully!') }
+        format.json { render json: @booking, status: :created, location: @booking }
+      else
+        format.html { render action: 'new', notice: 'Booking Unsuccessful' }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
     end
   end
 

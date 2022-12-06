@@ -1,9 +1,11 @@
 class PassengerMailer < ApplicationMailer
-  default from: 'notification@alvin.com'
+  default from: 'booking@funkyflights.com'
 
-  def welcome_email
-    @user = params[:user]
-    @url = params[:url]
-    mail(to: @user.email, subject: 'Welcome to your Kodak Moment!')
+  def confirmation_email(passenger)
+    @passenger = passenger
+    @flight = passenger.booking.flight
+    @url = booking_url(passenger.booking)
+
+    mail(to: @passenger.email, subject: 'Your Booking Has Been Confirmed')
   end
 end

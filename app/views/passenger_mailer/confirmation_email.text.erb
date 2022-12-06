@@ -1,0 +1,9 @@
+Your booking has been confirmed, <%= @passenger.name %>
+===============================================
+
+You have successfully booked a seat on flight <%= @flight.id %>,
+from <%= @flight.departure_airport.code%> to <%= @flight.arrival_airport.code%> on <%= @flight.flight_date %>.
+
+To view your booking, just follow this link: <%= @url %>.
+
+Thank you for flying with Funky Airlines.
